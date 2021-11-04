@@ -14,5 +14,12 @@ namespace API.Data
         #region properties
         public DbSet<AppUser> Users { get; set; }
         #endregion
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<AppUser>()
+                .HasIndex(x=>x.UserName)
+                .IsUnique(true);
+        }
     }
 }
